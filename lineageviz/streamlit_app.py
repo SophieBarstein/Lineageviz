@@ -39,7 +39,7 @@ max_time = int(st.session_state.lineage_data["time"].max()) if not st.session_st
 time_limit = st.sidebar.slider("Show Tree Up To Time (min)", 0, max_time, max_time, step=10)
 show_sizes = st.sidebar.checkbox("Show Size Labels", value=True)
 show_times = st.sidebar.checkbox("Show Division Times", value=True)
-#show_axis = st.sidebar.checkbox("Show Time Axis", value=True)
+show_axis = st.sidebar.checkbox("Show Time Axis", value=True)
 color_by_lineage = st.sidebar.checkbox("Color Code Lineages", value=True)
 show_fates = st.sidebar.checkbox("Show Fate Labels", value=True)
 show_angles = st.sidebar.checkbox("Show Division Angles", value=True)
