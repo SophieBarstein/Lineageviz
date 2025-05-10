@@ -167,6 +167,7 @@ if structure:
     draw_tree(root, ax,
               show_sizes=show_sizes,
               show_times=show_times,
+              show_time_axis=show_axis,
               color_map=LINEAGE_COLORS if color_by_lineage else None,
               search_target=search_cell,
               fate_labels=cell_fates if show_fates else None,
