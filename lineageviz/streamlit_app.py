@@ -1,6 +1,15 @@
 # Updated streamlit_app.py with unified input, inferred geometry from shape, and dynamic time slider
 import requests
 API_BASE = "https://cleavage-api.onrender.com"
+try:
+    response = requests.get(f"{API_BASE}/species")
+    response.raise_for_status()
+    species_list = response.json()
+except Exception as e:
+    st.sidebar.warning("⚠️ Could not load species from API.")
+    species_list = []
+
+species_choice = st.sidebar.selectbox("📚 Load Preset Species", ["None"] + species_list)
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
