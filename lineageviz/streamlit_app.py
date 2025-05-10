@@ -1,5 +1,18 @@
-# Updated streamlit_app.py with unified input, inferred geometry from shape, and dynamic time slider
+
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
 import requests
+from io import StringIO
+from lineageviz.layout import layout_tree
+from lineageviz.plot import draw_tree
+from lineageviz.tree import Node
+from geometry_engine import plot_geometry_scene
+from spatial_infer import position_tree
+
+st.set_page_config(layout="wide")
+st.title("🧬 Lineage Tree Visualizer")
+
 API_BASE = "https://cleavage-api.onrender.com"
 try:
     response = requests.get(f"{API_BASE}/species")
@@ -10,18 +23,6 @@ except Exception as e:
     species_list = []
 
 species_choice = st.sidebar.selectbox("📚 Load Preset Species", ["None"] + species_list)
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-from io import StringIO
-from lineageviz.layout import layout_tree
-from lineageviz.plot import draw_tree
-from lineageviz.tree import Node
-from geometry_engine import plot_geometry_scene
-from spatial_infer import position_tree
-
-st.set_page_config(layout="wide")
-st.title("🧬 Lineage Tree Visualizer")
 
 DEFAULT_COLUMNS = [
     "parent", "left_child", "right_child", "time",
@@ -47,13 +48,6 @@ show_geometry = st.sidebar.checkbox("Show geometry scene")
 show_vectors = st.sidebar.checkbox("Show division vectors", value=True)
 show_planes = st.sidebar.checkbox("Show division planes", value=True)
 show_shapes = st.sidebar.checkbox("Show cell volumes", value=True)
-try:
-    species_list = requests.get(f"{API_BASE}/species").json()
-except Exception as e:
-    species_list = []
-    st.sidebar.warning("Failed to connect to species API")
-
-species_choice = st.sidebar.selectbox("📚 Load Preset Species", ["None"] + species_list)
 
 if species_choice != "None":
     try:
@@ -66,7 +60,7 @@ if species_choice != "None":
             st.error("Failed to load species data")
     except Exception as e:
         st.error("Error connecting to API")
-        
+
 # === Input Help + Template ===
 with st.sidebar.expander("📄 Input Format Instructions"):
     st.markdown("""
