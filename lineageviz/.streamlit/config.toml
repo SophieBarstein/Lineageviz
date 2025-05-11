@@ -1,5 +1,7 @@
 [theme]
-base="light"
-primaryColor="#b75ec9"
-secondaryBackgroundColor="#c2d5dc"
-textColor="#000000"
+base = "dark"
+primaryColor = "#bd43b8"
+secondaryBackgroundColor = "#0c3f4a"
+backgroundColor = "#0E1117"        # Streamlit’s default dark background
+textColor = "#FAFAFA"              # Clean light text
+font = "sans serif"
