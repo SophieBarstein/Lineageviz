@@ -1,7 +1,0 @@
-[theme]
-base = "dark"  # can be "light" or "dark"
-primaryColor = "#8A2BE2"                # violet (DNA purple)
-secondaryBackgroundColor = "#262730"    # default dark secondary
-backgroundColor = "#0E1117"             # default dark main
-textColor = "#FAFAFA"                   # default light text
-font = "sans serif"
